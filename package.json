@@ -4,7 +4,8 @@
   "private": true,
   "description": "Latency-aware reaction speed PWA with optional backend for clock sync/health.",
   "scripts": {
-    "start:backend": "node backend/server.js"
+    "start:backend": "node backend/server.js",
+    "build": "node scripts/build.mjs"
   },
   "dependencies": {
     "cors": "^2.8.5",

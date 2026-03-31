@@ -54,6 +54,31 @@ The app runs multiple rounds per session and computes average performance to red
 
 ---
 
+
+## Production build (compiled/minified)
+
+To generate a production-ready folder (`dist/`) with minified HTML, CSS, and JS:
+
+```bash
+npm run build
+```
+
+or directly:
+
+```bash
+./scripts/build.sh
+```
+
+The build process:
+- cleans and recreates `dist/`,
+- minifies `index.html`, `styles.css`, `app.js`, `service-worker.js`,
+- normalizes/minifies `manifest.webmanifest`,
+- copies required static icons.
+
+You can then serve `dist/` with any static server.
+
+---
+
 ## Run locally (from cloned repo)
 
 ### Requirements
