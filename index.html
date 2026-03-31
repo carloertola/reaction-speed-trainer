@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#006080" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Reaction Speed Trainer</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header>
+        <h1>Reaction Speed Trainer</h1>
+        <p>Train and test visual, auditory, and tactile reaction speed with latency-aware scoring.</p>
+      </header>
+
+      <section class="card controls">
+        <h2>Session Setup</h2>
+        <div class="grid">
+          <label>Mode
+            <select id="modeSelect">
+              <option value="test">Test (single score)</option>
+              <option value="training">Training (live feedback)</option>
+            </select>
+          </label>
+          <label>Stimulus
+            <select id="stimulusSelect">
+              <option value="visual">Visual</option>
+              <option value="auditory">Auditory</option>
+              <option value="tactile">Tactile</option>
+            </select>
+          </label>
+          <label>Response
+            <select id="responseSelect">
+              <option value="tap">Screen tap</option>
+              <option value="mic">Microphone sound</option>
+            </select>
+          </label>
+          <label>Rounds
+            <input id="roundsInput" type="number" min="3" max="30" value="7" />
+          </label>
+        </div>
+
+        <details>
+          <summary>Latency Compensation Settings</summary>
+          <p>These offsets are subtracted from measured reaction times.</p>
+          <div class="grid">
+            <label>Visual output offset (ms)
+              <input id="visualOffset" type="number" value="16" step="1" />
+            </label>
+            <label>Auditory output offset (ms)
+              <input id="audioOffset" type="number" value="0" step="1" />
+            </label>
+            <label>Tactile output offset (ms)
+              <input id="tactileOffset" type="number" value="15" step="1" />
+            </label>
+            <label>Tap input offset (ms)
+              <input id="tapOffset" type="number" value="24" step="1" />
+            </label>
+            <label>Mic input offset (ms)
+              <input id="micOffset" type="number" value="35" step="1" />
+            </label>
+            <label>Network jitter offset (ms)
+              <input id="networkOffset" type="number" value="0" step="1" />
+            </label>
+          </div>
+          <div class="actions">
+            <button id="autoCalibrateBtn" type="button">Auto-estimate device audio latency</button>
+            <button id="syncBackendBtn" type="button">Sync with backend clock</button>
+          </div>
+          <label>Backend URL
+            <input id="backendUrl" type="url" value="http://localhost:8787" />
+          </label>
+          <p id="calibrationStatus" class="muted"></p>
+        </details>
+
+        <div class="actions">
+          <button id="startBtn" type="button">Start Session</button>
+          <button id="stopBtn" type="button" disabled>Stop</button>
+        </div>
+      </section>
+
+      <section class="card session">
+        <h2>Live Session</h2>
+        <div id="stimulusPanel" class="stimulus-panel" aria-live="polite">
+          Wait for the signal...
+        </div>
+        <p id="roundLabel">Round 0 / 0</p>
+        <ul id="liveResults"></ul>
+      </section>
+
+      <section class="card history">
+        <h2>Saved Sessions</h2>
+        <div id="historyList"></div>
+      </section>
+    </main>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

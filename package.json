@@ -1,0 +1,14 @@
+{
+  "name": "reaction-speed-trainer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Latency-aware reaction speed PWA with optional backend for clock sync/health.",
+  "scripts": {
+    "start:backend": "node backend/server.js",
+    "build": "node scripts/build.mjs"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}
